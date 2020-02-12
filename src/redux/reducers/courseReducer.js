@@ -1,4 +1,4 @@
-import * as actionTypes from './actions';
+import { SET_COURSE, DELETE_COURSE, EDIT_COURSE, GET_COURSE } from '../actions/courseActions';
 
 const initialState = {
     courses: [
@@ -26,9 +26,9 @@ const initialState = {
     }
 };
 
-export const reducer = (state = initialState, action) => {
+export const courseReducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.SET_COURSE:
+        case SET_COURSE:
             return {
                 ...state,
                 courses: [
@@ -39,28 +39,30 @@ export const reducer = (state = initialState, action) => {
                     }
                 ]
             };
-        case actionTypes.DELETE_COURSE:
+        case DELETE_COURSE:
             const indexOfCourseToDelete = state.courses.findIndex(x => x.id === action.selectedCourseId);
-            state.courses.splice(indexOfCourseToDelete, 1);
+            const newStateDelete = Object.assign(state);
+            newStateDelete.courses.splice(indexOfCourseToDelete, 1);
             return {
                 ...state,
                 courses: [
-                    ...state.courses
+                    ...newStateDelete.courses
                 ]
             };
-        case actionTypes.EDIT_COURSE:
+        case EDIT_COURSE:
             const indexOfCourseToEdit = state.courses.findIndex(x => x.id === action.selectedCourseId);
-            const newCourse = {...action.course, id: action.course.title}
-            state.courses.splice(indexOfCourseToEdit, 1, newCourse);
+            const newCourse = { ...action.course, id: action.course.title }
+            const newStateEdit = Object.assign(state);
+            newStateEdit.courses.splice(indexOfCourseToEdit, 1, newCourse);
             return {
                 ...state,
                 courses: [
-                    ...state.courses
+                    ...newStateEdit.courses
                 ]
             }
-        case actionTypes.GET_COURSE:
+        case GET_COURSE:
             const indexToGetCourse = state.courses.findIndex(x => x.id === action.selectedCourseId);
-            return{
+            return {
                 ...state,
                 selectedCourse: Object.assign(state.selectedCourse, state.courses[indexToGetCourse])
             }

@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Button from '../UX/ButtonCompoent';
+import Button from '../ux/ButtonCompoent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BootstrapTable from 'react-bootstrap-table-next';
-import * as actionTypes from '../store/actions';
+import * as actionTypes from '../../redux/actions/courseActions';
 
 function CourseList(props) {
 

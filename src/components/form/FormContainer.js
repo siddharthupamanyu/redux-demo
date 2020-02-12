@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from './Form';
 import { connect } from 'react-redux';
-import * as actionTypes from '../store/actions';
+import { setCourse, editCourse } from '../../redux/actions/courseActions';
 
 function FormContainer(props) {
 
@@ -36,8 +36,8 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onCourseAdded: newCourse => dispatch({ type: actionTypes.SET_COURSE, course: newCourse }),
-        onCourseEdited: (newCourse, id) => dispatch({ type: actionTypes.EDIT_COURSE, course: newCourse, selectedCourseId: id })
+        onCourseAdded: newCourse => dispatch(setCourse(newCourse)),
+        onCourseEdited: (newCourse, id) => dispatch(editCourse(newCourse, id))
     }
 }
 

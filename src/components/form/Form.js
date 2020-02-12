@@ -1,6 +1,6 @@
 import React from 'react';
-import TextField from '../UX/TextField';
-import SelectField from '../UX/SelectField';
+import TextField from '../ux/TextField';
+import SelectField from '../ux/SelectField';
 import { Field, reduxForm } from 'redux-form';
 
 export const Form = ({ handleSubmit, reset, handleCancel }) => {
